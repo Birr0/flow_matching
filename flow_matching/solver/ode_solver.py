@@ -192,6 +192,15 @@ class ODESolver(Solver):
         source_log_p = log_p0(x_source)
 
         if return_intermediates:
-            return sol, source_log_p + log_det[-1]
+            return {
+                "sol" :sol, 
+                "log_p_x1" :source_log_p + log_det[-1], 
+                "log_p_x0" : source_log_p,
+                "log_det" : log_det
+            }
         else:
-            return sol[-1], source_log_p + log_det[-1]
+            return {
+                "sol" :sol[-1], 
+                "log_p_x1" :source_log_p + log_det[-1]
+            }
+
